@@ -31,20 +31,23 @@ export const getAdmin = async (req, res) => {
 export const createAdmin = async (req, res) => {
     
     const {fb_id, num_empleado, nombre,correo, id_tipoAdmin} = req.body
-    
+    console.log(req.body);
     try {
 
         const [rows] = await conn.query("INSERT INTO Administradores (fb_id, num_empleado, nombre, correo, id_tipoAdmin) VALUES (?,?,?,?,?)", [fb_id, num_empleado, nombre, correo, id_tipoAdmin])
         
-        res.send({
+        /*res.send({
             id: rows.insertId,
             fb_id,
             num_empleado,
             nombre,
             correo,
             id_tipoAdmin
-        });
-
+        });*/
+        console.log(rows);
+        res.status(201).json({
+            id: rows.insertId
+        })
     } catch (error) {
         return res.status(500).json({
             message: 'Something goes wrong!'
