@@ -76,11 +76,11 @@ export const updateAdmin = async (req, res) => {
     
     try {
         
-        const [result] = await conn.query("UPDATE Administradores SET num_empleado = IFNULL(?, num_empleado) nombre = IFNULL(?, nombre), correo = IFNULL(?, correo) WHERE id_admin = ?", [nombre, correo, id_admin])
+        const [result] = await conn.query("UPDATE Administradores SET num_empleado = IFNULL(?, num_empleado), nombre = IFNULL(?, nombre), correo = IFNULL(?, correo) WHERE id_admin = ?", [num_empleado, nombre, correo, id_admin])
     
         if (result.affectedRows === 0) return res.status(404).json({message: "Admin not found"});
         
-        const[rows] = await conn.query("SELECT * FROM Administradores WHERE num_empleado = ?", [num_empleado])
+        const[rows] = await conn.query("SELECT * FROM Administradores WHERE id_admin = ?", [id_admin])
 
         res.json(rows[0]);
 
