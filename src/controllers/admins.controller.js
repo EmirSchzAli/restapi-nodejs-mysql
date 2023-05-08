@@ -71,12 +71,12 @@ export const createAdmin = async (req, res) => {
 };
 
 export const updateAdmin = async (req, res) => {
-    const {num_empleado} = req.params
-    const {nombre, correo} = req.body
+    const {id_admin} = req.params
+    const {num_empleado, nombre, correo} = req.body
     
     try {
         
-        const [result] = await conn.query("UPDATE Administradores SET nombre = IFNULL(?, nombre), correo = IFNULL(?, correo) WHERE num_empleado = ?", [nombre, correo, num_empleado])
+        const [result] = await conn.query("UPDATE Administradores SET num_empleado = IFNULL(?, num_empleado) nombre = IFNULL(?, nombre), correo = IFNULL(?, correo) WHERE id_admin = ?", [nombre, correo, id_admin])
     
         if (result.affectedRows === 0) return res.status(404).json({message: "Admin not found"});
         
