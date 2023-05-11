@@ -84,7 +84,7 @@ export const deleteTeacher = async (req, res) => {
 
         if (result.affectedRows <= 0) return res.status(404).json({message: "Teacher not found"})
 
-        res.status(204).json({message: "Teacher deleted"}) 
+        res.status(200).json({message: "Teacher deleted"}) 
 
     } catch (error) {
         return res.status(500).json({
