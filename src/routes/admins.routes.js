@@ -1,11 +1,12 @@
 import { Router } from "express";
-import { getAllAdmins, getAdmin, getAdminbyFBid, createAdmin, updateAdmin, deleteAdmin } from "../controllers/admins.controller.js";
+import { getAllAdmins, getAdmin, getAdminbyFBid, getAdminsRegistred, createAdmin, updateAdmin, deleteAdmin } from "../controllers/admins.controller.js";
 
 const router = Router();
 
 router.get('/admins', getAllAdmins);
 router.get('/admins/:num_empleado', getAdmin);
 router.get('/admins/fb/:num_empleado', getAdminbyFBid);
+router.post('/admins/registred', getAdminsRegistred);
 router.post('/admins', createAdmin);
 router.patch('/admins/:id_admin', updateAdmin);
 router.delete('/admins/:num_empleado', deleteAdmin);

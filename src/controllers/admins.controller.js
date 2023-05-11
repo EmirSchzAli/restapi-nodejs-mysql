@@ -43,6 +43,23 @@ export const getAdminbyFBid = async (req, res) => {
     }
 };
 
+export const getAdminsRegistred = async (req, res) => {
+    try {
+        
+        const [rows] = await conn.query("SELECT a.id_admin, a.num_empleado, a.nombre, a.correo, ta.nombre as 'tipoAdmin', a.id_tipoAdmin FROM Administradores a INNER JOIN Tipo_Admin ta ON a.id_tipoAdmin = ta.id_tipoAdmin ORDER BY a.num_empleado ASC")
+        
+        if (rows.length <= 0) return res.status(404).json({message: "Adminsssssss not found"});
+
+        res.json(rows);
+
+    } catch (error) {
+        return res.status(500).json({
+            message: 'Something goes wrong!'
+        })
+    }
+};
+
+
 export const createAdmin = async (req, res) => {
     
     const {fb_id, num_empleado, nombre,correo, id_tipoAdmin} = req.body
