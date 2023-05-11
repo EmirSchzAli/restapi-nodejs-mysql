@@ -80,9 +80,9 @@ export const updateStudent = async (req, res) => {
 export const deleteStudent = async (req, res) => {
     try {
         
-        const [result] = await conn.query("DELETE FROM Alumnos WHERE matricula = ?", [req.params.matricula])
+        const [result] = await conn.query("DELETE FROM Alumnos WHERE id_alumno = ?", [req.params.id_alumno])
 
-        if (result.affectedRows <= 0) return res.status(404).json({message: "Student not found"});
+        if (result.affectedRows <= 0) return res.status(404).json({message: "Student not found"})
 
         res.status(204) 
 

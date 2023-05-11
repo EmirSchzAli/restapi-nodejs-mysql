@@ -7,6 +7,6 @@ router.get('/students', getAllStudents);
 router.get('/students/:matricula', getStudent);
 router.post('/students', createStudent);
 router.patch('/students/:matricula', updateStudent);
-router.delete('/students/:matricula', deleteStudent);
+router.delete('/students/:id_alumno', deleteStudent);
 
 export default router;
