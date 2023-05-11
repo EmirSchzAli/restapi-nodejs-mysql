@@ -116,7 +116,7 @@ export const deleteAdmin = async (req, res) => {
 
         if (result.affectedRows <= 0) return res.status(404).json({message: "Admin not found"})
 
-        res.status(204) 
+        res.status(204).json({message: "Admin deleted"})
 
     } catch (error) {
         return res.status(500).json({
