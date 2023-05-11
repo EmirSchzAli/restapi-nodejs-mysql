@@ -5,10 +5,10 @@ const router = Router();
 
 router.get('/admins', getAllAdmins);
 router.get('/admins/:num_empleado', getAdmin);
-router.get('/admins/fb/:num_empleado', getAdminbyFBid);
+router.get('/admins/fb/:fb_id', getAdminbyFBid);
 router.post('/admins/registred', getAdminsRegistred);
 router.post('/admins', createAdmin);
 router.patch('/admins/:id_admin', updateAdmin);
-router.delete('/admins/:num_empleado', deleteAdmin);
+router.delete('/admins/:id_admin', deleteAdmin);
 
 export default router;

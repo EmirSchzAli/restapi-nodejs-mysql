@@ -30,7 +30,7 @@ export const getAdmin = async (req, res) => {
 
 export const getAdminbyFBid = async (req, res) => {
     try {
-        const [rows] = await conn.query("SELECT * FROM Administradores WHERE fb_id = ?", [req.params.num_empleado])
+        const [rows] = await conn.query("SELECT * FROM Administradores WHERE fb_id = ?", [req.params.fb_id])
     
         if (rows.length <= 0) return res.status(404).json({message: "Admin not found"});
 
@@ -46,7 +46,7 @@ export const getAdminbyFBid = async (req, res) => {
 export const getAdminsRegistred = async (req, res) => {
     try {
         
-        const [rows] = await conn.query("SELECT a.id_admin, a.fb_id, a.num_empleado, a.nombre, a.correo, ta.nombre as 'tipoAdmin', a.id_tipoAdmin FROM Administradores a INNER JOIN Tipo_Admin ta ON a.id_tipoAdmin = ta.id_tipoAdmin ORDER BY a.num_empleado ASC")
+        const [rows] = await conn.query("SELECT a.id_admin, a.fb_idq, a.num_empleado, a.nombre, a.correo, ta.nombre as 'tipoAdmin', a.id_tipoAdmin FROM Administradores a INNER JOIN Tipo_Admin ta ON a.id_tipoAdmin = ta.id_tipoAdmin ORDER BY a.num_empleado ASC")
         
         if (rows.length <= 0) return res.status(404).json({message: "Adminsssssss not found"});
 
@@ -112,9 +112,9 @@ export const updateAdmin = async (req, res) => {
 export const deleteAdmin = async (req, res) => {
     try {
         
-        const [result] = await conn.query("DELETE FROM Administradores WHERE num_empleado = ?", [req.params.num_empleado])
+        const [result] = await conn.query("DELETE FROM Administradores WHERE id_admin = ?", [req.params.id_admin])
 
-        if (result.affectedRows <= 0) return res.status(404).json({message: "Admin not found"});
+        if (result.affectedRows <= 0) return res.status(404).json({message: "Admin not found"})
 
         res.status(204) 
 
