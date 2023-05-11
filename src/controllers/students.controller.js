@@ -56,16 +56,16 @@ export const createStudent = async (req, res) => {
 };
 
 export const updateStudent = async (req, res) => {
-    const {matricula} = req.params
-    const {nombre, apellido} = req.body
+    const {id_alumno} = req.params
+    const {matricula, nombre, apellido} = req.body
     
     try {
         
-        const [result] = await conn.query("UPDATE Alumnos SET matricula = IFNULL(?, matricula), nombre = IFNULL(?, nombre), apellido = IFNULL(?, apellido) WHERE matricula = ?", [matricula, nombre, apellido, matricula])
+        const [result] = await conn.query("UPDATE Alumnos SET matricula = IFNULL(?, matricula), nombre = IFNULL(?, nombre), apellido = IFNULL(?, apellido) WHERE id_alumno = ?", [matricula, nombre, apellido, id_alumno])
     
         if (result.affectedRows === 0) return res.status(404).json({message: "Student not found"});
         
-        const[rows] = await conn.query("SELECT * FROM Alumnos WHERE matricula = ?", [matricula])
+        const[rows] = await conn.query("SELECT * FROM Alumnos WHERE id_alumno = ?", [id_alumno])
 
         res.json(rows[0]);
 
