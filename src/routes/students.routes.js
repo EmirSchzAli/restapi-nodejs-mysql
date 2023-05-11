@@ -4,7 +4,7 @@ import { getAllStudents, getStudent, createStudent, updateStudent, deleteStudent
 const router = Router();
 
 router.get('/students', getAllStudents);
-router.get('/students/:matricula', getStudent);
+router.get('/students/:id_alumno', getStudent);
 router.post('/students', createStudent);
 router.patch('/students/:id_alumno', updateStudent);
 router.delete('/students/:id_alumno', deleteStudent);
