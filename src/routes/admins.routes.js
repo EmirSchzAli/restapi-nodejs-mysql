@@ -4,7 +4,7 @@ import { getAllAdmins, getAdmin, getAdminbyFBid, getAdminsRegistred, createAdmin
 const router = Router();
 
 router.get('/admins', getAllAdmins);
-router.get('/admins/:num_empleado', getAdmin);
+router.get('/admins/:id_admin', getAdmin);
 router.get('/admins/fb/:fb_id', getAdminbyFBid);
 router.post('/admins/registred', getAdminsRegistred);
 router.post('/admins', createAdmin);

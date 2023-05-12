@@ -28,6 +28,21 @@ export const getStudent = async (req, res) => {
     }
 };
 
+export const getStudentbyMat = async (req, res) => {
+    try {
+        const [rows] = await conn.query("SELECT * FROM Alumnos WHERE matricula = ?", [req.params.matricula])
+    
+        if (rows.length <= 0) return res.status(404).json({message: "Student not found"});
+
+        res.json(rows[0]);
+
+    } catch (error) {
+        return res.status(500).json({
+            message: 'Something goes wrong!'
+        })
+    }
+};
+
 export const createStudent = async (req, res) => {
     
     const {matricula, nombre, apellido} = req.body

@@ -28,6 +28,21 @@ export const getTeacher = async (req, res) => {
     }
 };
 
+export const getTeacherNumEmpleado = async (req, res) => {
+    try {
+        const [rows] = await conn.query("SELECT * FROM Docentes WHERE num_empleado = ?", [req.params.num_empleado])
+    
+        if (rows.length <= 0) return res.status(404).json({message: "Teacher not found"});
+
+        res.json(rows[0]);
+
+    } catch (error) {
+        return res.status(500).json({
+            message: 'Something goes wrong!'
+        })
+    }
+};
+
 export const createTeacher = async (req, res) => {
     
     const {num_empleado, nombre} = req.body

@@ -15,7 +15,7 @@ export const getAllAdmins = async (req, res) => {
 
 export const getAdmin = async (req, res) => {
     try {
-        const [rows] = await conn.query("SELECT * FROM Administradores WHERE num_empleado = ?", [req.params.num_empleado])
+        const [rows] = await conn.query("SELECT * FROM Administradores WHERE num_empleado = ?", [req.params.id_admin])
     
         if (rows.length <= 0) return res.status(404).json({message: "Admin not found"});
 
