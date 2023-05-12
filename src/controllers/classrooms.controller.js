@@ -65,7 +65,7 @@ export const updateClassroom = async (req, res) => {
     
         if (result.affectedRows === 0) return res.status(404).json({message: "Teacher not found"});
         
-        const[rows] = await conn.query("SELECT * FROM Docentes WHERE id_docente = ?", [id_salon])
+        const[rows] = await conn.query("SELECT * FROM Salones WHERE id_salon = ?", [id_salon])
 
         res.json(rows[0]);
 
