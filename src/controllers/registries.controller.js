@@ -30,7 +30,7 @@ export const createRegistry = async (req, res) => {
 export const getAllRegistries = async (req, res) => {
     try {
         
-        const [rows] = await conn.query("SELECT * FROM Registros")
+        const [rows] = await conn.query("SELECT * FROM Registros ORDER BY fecha_hora DESC")
         res.json(rows);
 
     } catch (error) {
